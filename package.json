@@ -1,0 +1,11 @@
+{
+    "main": "index.js", 
+    "id": "jid1-hvH2jWPMqodQgA", 
+    "dependencies": {
+        "async": "latest", 
+        "meta-fs": "latest", 
+        "cfx": "latest",
+        "diff": "latest",
+        "rimraf": "latest"
+    }
+}
