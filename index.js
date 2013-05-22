@@ -40,7 +40,7 @@ function compare (name, callback, err, results) {
   // and filter out lines that are not diff, as well as the running time, profile
   var diffs = diff.diffLines(results[0], results[1]).filter(function (obj) {
     return !/^Total time: [\d]*\.[\d]* seconds\n$/.test(obj.value) &&
-      !/^Using profile at '\/tmp\/[a-zA-Z0-9]*\.mozrunner'\.\nTotal time: [\d]*\.[\d]* seconds\n$/.test(obj.value) &&
+      !/^Using profile at '\/tmp\/[_a-zA-Z0-9]*\.mozrunner'\.\nTotal time: [\d]*\.[\d]* seconds\n$/.test(obj.value) &&
     (obj.added || obj.removed);
   });
   if (!diffs.length && !err)
