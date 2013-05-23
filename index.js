@@ -5,17 +5,18 @@ var fs = require('fs');
 var exec = require('child_process').exec;
 var cp = require('meta-fs').copy;
 var rimraf = require('rimraf');
-var REPACK_DIR = __dirname + '/repacks';
+var REPACK_DIR = __dirname + '/repacks_subset';
 var PREV_DIR = __dirname + '/xpis';
 var SDK_DIR = '/Users/jsantell/Dev/addon-sdk';
 var INSTALL_PATH = __dirname + '/addons';
 var SANDBOX_DIR = __dirname + '/addon';
-var outStream = fs.createWriteStream(__dirname + '/results.txt');
+var outStream = fs.createWriteStream(__dirname + '/results_subset.txt');
 var files = fs.readdirSync(REPACK_DIR);
 
 // Clears out addons
 prep(startProcess);
 
+console.log(files.length);
 function startProcess () {
   async.mapSeries(files, process, function (err, results) {
     console.log('PROCESSING COMPLETE');
@@ -46,7 +47,7 @@ function compare (name, callback, err, results) {
   if (!diffs.length && !err)
     out += name + ': SUCCESS\n';
   else if (err)
-    out += name + ': PARSING ERROR \n<BEGIN>\n' + e + '\n<END>\n';
+    out += name + ': PARSING ERROR \n<BEGIN>\n' + err + '\n<END>\n';
   else if (diffs.length) {
     out += name + ': ADDON ERRORS FOUND \n<BEGIN>\n';
     diffs.forEach(function (obj) {
